@@ -47,7 +47,7 @@ passport.use(
     new SpotifyStrategy({
             clientID: process.env.CLIENT_ID,
             clientSecret: process.env.CLIENT_SECRET,
-            callbackURL: 'auth/spotify/callback',
+            callbackURL: 'https://muser-spotify.herokuapp.com/auth/spotify/callback',
         },
         function(accessToken, refreshToken, expires_in, profile, done) {
             db.user
