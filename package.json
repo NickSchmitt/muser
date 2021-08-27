@@ -26,6 +26,7 @@
 		"passport-spotify": "^1.1.0",
 		"pg": "^8.4.2",
 		"sequelize": "^6.3.5",
+		"sequelize-cli": "^6.2.0",
 		"session": "^0.1.0"
 	},
 	"repository": {
