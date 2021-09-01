@@ -55,12 +55,18 @@ app.get('/', isLoggedIn, (req, res) => {
 //--------checks if user is signed in and grabs all comments from comment database 
 
 
-app.get('/profile', isLoggedIn, (req, res) => {
-    db.comment.findAll().then((allComments) => {
-        res.render('profile', {
-            comments: allComments,
-        })
-    })
+app.get('/profile', isLoggedIn, async (req, res) => {
+	
+    const comments = await db.comment.findAll({
+		where: {
+			userId: req.user.id
+		}
+	})
+	console.log(comments)
+	res.render('profile', {
+		comments,
+		user: req.user
+	})
 })
 
 
@@ -165,7 +171,6 @@ app.get('/artists/:id', function(req, res) {
                         tracks: topTracksResponse.data.tracks,
                     })
                 })
-                //   TODO: FIND ALL COMMENTS WHERE TRACKID'S SONG MATCHES ARTIST
                 // db.comment
                 //   .findAll({ where: { trackId: spotifyResponse.data.id } })
                 //   .then((allComments) => {

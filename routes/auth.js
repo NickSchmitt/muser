@@ -3,11 +3,16 @@ const passport = require('../config/ppConfig')
 const db = require('../models')
 const router = express.Router()
 
-router.get('/spotify', passport.authenticate('spotify'))
+router.get('/spotify', passport.authenticate('spotify', {
+	scope: ['streaming', 'user-read-private', 'user-top-read', 'user-read-recently-played', 'user-follow-read']
+}))
 
 router.get(
   '/spotify/callback',
-  passport.authenticate('spotify', { failureRedirect: '/login' }),
+  passport.authenticate('spotify', { 
+	  failureRedirect: '/login',
+	  scope: ['streaming', 'user-read-private', 'user-top-read', 'user-read-recently-played', 'user-follow-read']
+	}),
   function (req, res) {
     // console.log('test test test')
     // Successful authentication, redirect home.
