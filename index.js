@@ -1,15 +1,17 @@
 require('dotenv').config()
-const cookieSession = require("cookie-session");
+// const cookieSession = require("cookie-session");
 const express = require("express");
 const app = express();
 const port = 4000;
 const passport = require("passport");
 const passportSetup = require("./config/ppconfig");
+const isLoggedIn = require('./middleware/isLoggedIn')
 const session = require("express-session");
 const authRoutes = require("./routes/auth");
 // const keys = require("./config/keys");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
+const flash = require('connect-flash')
 
 app.use(
 	session({
@@ -21,6 +23,8 @@ app.use(
 		// maxAge: 60 * 60 * 1000 // 1 hour
 	})
 )
+
+app.use(flash())
 
 app.use(cookieParser())
 
@@ -48,22 +52,8 @@ const authCheck = (req, res, next) => {
 	}
 }
 
-app.get('/', authCheck, (req, res) => {
-	res.status(200).json({
-		authenticated: true,
-		message: "Authentication successful",
-		user: req.user,
-		cookies: req.cookies
-	})
+app.get('/', isLoggedIn, (req, res) => {
+	res.send({ message: "hello" })
 })
 
 app.listen(process.env.PORT || 4000, () => { console.log(`Server is running on port ${process.env.PORT || 4000}`) })
-
-// const server = app.listen(process.env.PORT || 4000, () =>
-// 	console.log(
-// 		`🎧You're listening to the smooth sounds of port ${process.env.PORT || 4000
-// 		}🎧`
-// 	)
-// )
-
-// module.exports = server
