@@ -69,7 +69,6 @@ passport.use(
 					user.save().then(function () {
 						return done(null, user)
 					})
-					// returns info about the user
 				})
 		}
 	)

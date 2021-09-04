@@ -21,8 +21,8 @@ app.use(
 
 app.use(cookieParser())
 
-app.use(passport.initialize())
-app.use(passport.session())
+app.use(passportSetup.initialize())
+app.use(passportSetup.session())
 
 app.use(
 	cors({
@@ -54,11 +54,13 @@ app.get('/', authCheck, (req, res) => {
 	})
 })
 
-const server = app.listen(process.env.PORT || 4000, () =>
-	console.log(
-		`🎧You're listening to the smooth sounds of port ${process.env.PORT || 4000
-		}🎧`
-	)
-)
+app.listen(process.env.PORT || 4000, () => { console.log(`Server is running on port ${process.env.PORT || 4000}`) })
 
-module.exports = server
+// const server = app.listen(process.env.PORT || 4000, () =>
+// 	console.log(
+// 		`🎧You're listening to the smooth sounds of port ${process.env.PORT || 4000
+// 		}🎧`
+// 	)
+// )
+
+// module.exports = server
