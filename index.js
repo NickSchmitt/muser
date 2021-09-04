@@ -12,23 +12,26 @@ const cors = require("cors");
 const cookieParser = require("cookie-parser");
 
 app.use(
-	cookieSession({
-		name: "session",
-		keys: "examplecookie",
-		maxAge: 60 * 60 * 1000 // 1 hour
+	session({
+		secret: "anything",
+		resave: true,
+		saveUninitialized: true
+		// name: "session",
+		// keys: "examplecookie",
+		// maxAge: 60 * 60 * 1000 // 1 hour
 	})
 )
 
 app.use(cookieParser())
 
-app.use(passportSetup.initialize())
-app.use(passportSetup.session())
+app.use(passport.initialize())
+app.use(passport.session())
 
 app.use(
 	cors({
-		origin: "http://localhost:3000", // allow to server to accept request from different origin
+		origin: "http://localhost:3000",
 		methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-		credentials: true // allow session cookie from browser to pass through
+		credentials: true
 	})
 )
 

@@ -5,6 +5,7 @@ const router = express.Router()
 const CLIENT_URL = "http://localhost:3000"
 
 router.get('/login/success', (req, res) => {
+	console.log(req.user)
 	if (req.user) {
 		res.json({
 			success: true,
@@ -34,11 +35,9 @@ router.get('/spotify', passport.authenticate('spotify', {
 router.get(
 	'/spotify/callback',
 	passport.authenticate('spotify', {
-		// successRedirect: "http://google.com",
+		successRedirect: "http://localhost:3000",
 		failureRedirect: "auth/login/failed",
-	}), (req, res) => {
-		res.redirect('http://localhost:3000')
-	}
+	})
 )
 
 module.exports = router
