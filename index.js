@@ -44,7 +44,9 @@ app.use((req, res, next) => {
 //   }
 // })
 
-app.get('/', isLoggedIn, (req, res) => {
+app.get('/', isLoggedIn, async (req, res) => {
+	// const comments = await db.comment.findAll()
+	// res.send({ comments })
 	{
 		res.render('index')
 	}
