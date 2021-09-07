@@ -34,13 +34,13 @@ app.use(flash())
 app.use(passport.initialize())
 app.use(passport.session())
 
-app.use(
-	cors({
-		origin: "http://localhost:3000", // allow to server to accept request from different origin
-		methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-		credentials: true // allow session cookie from browser to pass through
-	})
-);
+// app.use(
+// 	cors({
+// 		origin: "http://localhost:3000", // allow to server to accept request from different origin
+// 		methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+// 		credentials: true // allow session cookie from browser to pass through
+// 	})
+// );
 
 
 app.use((req, res, next) => {
@@ -57,7 +57,7 @@ const authCheck = (req, res, next) => {
 }
 
 app.get('/', authCheck, (req, res) => {
-	res.status(200)
+	res.render('index')
 })
 
 
