@@ -8,7 +8,6 @@ const isLoggedIn = require('./middleware/isLoggedIn')
 const session = require("express-session");
 const authRoutes = require("./routes/auth");
 const cors = require("cors");
-const cookieParser = require("cookie-parser");
 const flash = require('connect-flash');
 const { default: axios } = require('axios');
 
@@ -21,8 +20,6 @@ app.use(
 )
 
 app.use(flash())
-
-app.use(cookieParser())
 
 app.use(passport.initialize())
 app.use(passport.session())
