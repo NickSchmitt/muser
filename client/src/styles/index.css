@@ -9,6 +9,15 @@ body {
 	-moz-osx-font-smoothing: grayscale;
 }
 
+a {
+	text-decoration: none;
+}
+
 p {
 	color: white;
+	/* line-clamp: 1;
+	-webkit-line-clamp: 1;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	overflow: hidden; */
 }

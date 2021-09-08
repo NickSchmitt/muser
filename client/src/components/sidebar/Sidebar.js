@@ -1,4 +1,5 @@
 import styles from './Sidebar.module.css'
+import Playlists from './Playlists'
 
 function Sidebar() {
 	return (
@@ -8,7 +9,7 @@ function Sidebar() {
 			<button onClick={() => {
 				window.open("http://localhost:4000/auth/spotify", "_self")
 			}}>Login With Spotify</button>
-			<p>Playlists</p>
+			<Playlists />
 		</div>
 	)
 }
