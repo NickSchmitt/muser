@@ -36,7 +36,7 @@ export default function App() {
 		<div className={styles.App}>
 			<Sidebar />
 			<Routes />
-			<Player />
+			<Player user={user} />
 		</div>
 	);
 }
