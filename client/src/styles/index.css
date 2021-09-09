@@ -13,7 +13,7 @@ a {
 	text-decoration: none;
 }
 
-p {
+h1, p {
 	color: white;
 	/* line-clamp: 1;
 	-webkit-line-clamp: 1;
