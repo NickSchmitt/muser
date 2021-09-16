@@ -1,8 +1,8 @@
-# Muser
+# SpotifyComments
 
 ### Spotify with Song Review Functionality
 
-Muser is currently undergoing a refactor with the following improvements:
+SpotifyComments is currently undergoing a refactor with the following improvements:
 
 * Full Spotify playback functionality, synced with user's Spotify devices.
 * Changing Server-Side Rendering frontend to React, with a UI that matches Spotify's.
