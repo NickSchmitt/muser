@@ -1,7 +1,0 @@
-.Playlist {
-	line-clamp: 1;
-	-webkit-line-clamp: 1;
-	display: -webkit-box;
-	-webkit-box-orient: vertical;
-	overflow: hidden;
-}
