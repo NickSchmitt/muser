@@ -1,12 +1,13 @@
 require('dotenv').config()
-const express = require("express");
+import express, { Request, Response, NextFunction } from "express"
 const app = express();
 const port = 4000;
-const passport = require("passport");
+import passport from "passport"
 const passportSetup = require("./config/ppconfig");
 const isLoggedIn = require('./middleware/isLoggedIn')
 const session = require("express-session");
 const authRoutes = require("./routes/auth");
+const commentRoutes = require("./routes/comment");
 const cors = require("cors");
 const flash = require('connect-flash');
 const { default: axios } = require('axios');
@@ -19,6 +20,7 @@ app.use(
 	})
 )
 
+app.use(express.json())
 app.use(flash())
 
 app.use(passport.initialize())
@@ -33,8 +35,9 @@ app.use(
 )
 
 app.use('/auth', authRoutes)
+app.use('/comment', commentRoutes)
 
-const authCheck = (req, res, next) => {
+const authCheck = (req: Request, res: Response, next: NextFunction) => {
 	if (!req.user) {
 		res.status(401).json({
 			authenticated: false,
@@ -45,7 +48,7 @@ const authCheck = (req, res, next) => {
 	}
 }
 
-app.get('/', isLoggedIn, (req, res) => {
+app.get('/', isLoggedIn, (_, res) => {
 	res.send({ message: "hello" })
 })
 
@@ -55,7 +58,7 @@ app.get('/imageprocessing', (req, res) => {
 		params: {
 			image: imageURL
 		}
-	}).then(FlaskResponse => res.send(FlaskResponse.data))
+	}).then((FlaskResponse: any) => res.send(FlaskResponse.data))
 })
 
 app.listen(process.env.PORT || 4000, () => { console.log(`Server is running on port ${process.env.PORT || 4000}`) })

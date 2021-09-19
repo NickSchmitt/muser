@@ -1,0 +1,15 @@
+GET http://localhost:4000/comment
+
+###
+
+GET http://localhost:4000/comment/5NwlxPHSKlRBLvOVwn2g7i
+
+###
+POST http://localhost:4000/comment
+content-type: application/json
+
+{
+    "text": "This is an example comment for an example song.",
+    "userId": 2,
+	"trackId": "5NwlxPHSKlRBLvOVwn2g7i"
+}
