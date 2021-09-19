@@ -8,6 +8,7 @@ const isLoggedIn = require('./middleware/isLoggedIn')
 const session = require("express-session");
 const authRoutes = require("./routes/auth");
 const commentRoutes = require("./routes/comment");
+const trackRoutes = require("./routes/track");
 const cors = require("cors");
 const flash = require('connect-flash');
 const { default: axios } = require('axios');
@@ -34,8 +35,21 @@ app.use(
 	})
 )
 
+app.use((error: any, req: Request, res: Response, next: NextFunction) => {
+	res.status(error.status || 500).json({
+	  status: 'error',
+	  error: {
+		// message: error.message || serverErrorMsg,
+		message: error.message
+	  },
+	});
+	next()
+  });
+
+
 app.use('/auth', authRoutes)
 app.use('/comment', commentRoutes)
+app.use('/track', trackRoutes)
 
 const authCheck = (req: Request, res: Response, next: NextFunction) => {
 	if (!req.user) {
