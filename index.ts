@@ -9,6 +9,7 @@ const session = require("express-session");
 const authRoutes = require("./routes/auth");
 const commentRoutes = require("./routes/comment");
 const trackRoutes = require("./routes/track");
+const playlistRoutes = require("./routes/playlist");
 const cors = require("cors");
 const flash = require('connect-flash');
 const { default: axios } = require('axios');
@@ -50,6 +51,7 @@ app.use((error: any, req: Request, res: Response, next: NextFunction) => {
 app.use('/auth', authRoutes)
 app.use('/comment', commentRoutes)
 app.use('/track', trackRoutes)
+app.use('/playlist', playlistRoutes)
 
 const authCheck = (req: Request, res: Response, next: NextFunction) => {
 	if (!req.user) {

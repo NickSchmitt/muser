@@ -1,5 +1,5 @@
 import express from "express";
-import { getTrack } from "../controllers/song";
+import { getTrack } from "../controllers/track";
 
 const router = express.Router()
 
